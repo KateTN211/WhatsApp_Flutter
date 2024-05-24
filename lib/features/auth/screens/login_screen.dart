@@ -49,9 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               const Padding(padding: EdgeInsets.only(top: 18.0)),
               const Text('WhatsApp will need to verify your number.'),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 5),
               TextButton(
                 onPressed: () => pickCountry(),
                 child: const Text(
@@ -59,14 +57,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(color: messageColor),
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              const SizedBox(height: 3),
               Row(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 16.0),
-                  ),
+                  const Padding(padding: EdgeInsets.only(left: 16.0)),
                   if (country != null) Text('(+${country!.phoneCode})'),
                   const Padding(padding: EdgeInsets.only(left: 10.0)),
                   const SizedBox(height: 10),
