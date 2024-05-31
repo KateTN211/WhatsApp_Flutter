@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/features/auth/screens/login_screen.dart';
+import 'package:whatsapp_clone/features/auth/screens/out/login_screen.dart';
+import 'package:whatsapp_clone/features/auth/screens/out/mail_screen_signin.dart';
+import 'package:whatsapp_clone/features/auth/screens/out/mail_screen_signup.dart';
 import 'package:whatsapp_clone/utils/colors.dart';
 import 'package:whatsapp_clone/common/widgets/custom_button.dart';
 
@@ -8,6 +10,14 @@ class LandingScreen extends StatelessWidget {
 
   void navigateToLoginScreen(BuildContext context) {
     Navigator.pushNamed(context, LoginScreen.routeName);
+  }
+
+  void navigateToMailScreen(BuildContext context) {
+    Navigator.pushNamed(context, MailScreen.routeName);
+  }
+
+  void navigateToMailScreenLogin(BuildContext context) {
+    Navigator.pushNamed(context, MailScreenSignin.routeName);
   }
 
   @override
@@ -35,12 +45,28 @@ class LandingScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
+            // const SizedBox(height: 10),
+            // SizedBox(
+            //   width: size.width * 0.75,
+            //   child: CustomButton(
+            //     onPressed: () => navigateToLoginScreen(context),
+            //     text: 'AGREE AND CONTINUE',
+            //   ),
+            // ),
             const SizedBox(height: 10),
             SizedBox(
               width: size.width * 0.75,
               child: CustomButton(
-                onPressed: () => navigateToLoginScreen(context),
-                text: 'AGREE AND CONTINUE',
+                onPressed: () => navigateToMailScreen(context),
+                text: 'EMAIL SIGN UP',
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: size.width * 0.75,
+              child: CustomButton(
+                onPressed: () => navigateToMailScreenLogin(context),
+                text: 'EMAIL LOGIN',
               ),
             )
           ],

@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whatsapp_clone/common/utils/utils.dart';
-import 'package:whatsapp_clone/features/auth/screens/otp_screen.dart';
+import 'package:whatsapp_clone/common/utils/show_snack_bar.dart';
+import 'package:whatsapp_clone/features/auth/screens/out/otp_screen.dart';
 
 final authRepositoryProvider = Provider((ref) => AuthRepository(
       auth: FirebaseAuth.instance,
@@ -17,6 +17,7 @@ class AuthRepository {
   AuthRepository({required this.auth, required this.firestore});
 
   void signInWithPhone(BuildContext context, String phoneNumber) async {
+    //print("Received phone number: $phoneNumber");
     try {
       await auth.verifyPhoneNumber(
           verificationCompleted: (PhoneAuthCredential credential) async {
@@ -34,7 +35,9 @@ class AuthRepository {
           }),
           codeAutoRetrievalTimeout: (String verificationId) {});
     } on FirebaseAuthException catch (e) {
-      showSnackBar(context: context, content: e.message!);
+      if (context.mounted) {
+        showSnackBar(context, e.message!);
+      }
     }
   }
 }

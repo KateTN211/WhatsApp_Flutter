@@ -1,14 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_clone/features/landing/screens/landing_screen.dart';
 import 'package:whatsapp_clone/firebase_options.dart';
 import 'package:whatsapp_clone/router.dart';
+import 'package:whatsapp_clone/services/firebase_auth_methods.dart';
 import 'package:whatsapp_clone/utils/colors.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Add this line
-
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -19,10 +20,11 @@ void main() async {
   );
 }
 
+final firebaseAuthProvider = Provider<FirebaseAuthMethods>(
+    (ref) => FirebaseAuthMethods(FirebaseAuth.instance));
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
